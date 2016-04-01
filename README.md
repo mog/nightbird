@@ -35,3 +35,10 @@
 - canvasのサイズ（モジュラー側もマスター側も）が大きいと遅くなる
 - media/nodeフォルダのjsファイルは**evalで呼び出してます**。わあ〜あぶない！人からもらったnodeファイルは使わないようにしよう！
 - ちょくちょく「node」という単語が出てきますが、**node.jsは関係ないです**。干渉こわい！
+
+### Setup ###
+
+```
+npm install http-server -g
+http-server
+```
