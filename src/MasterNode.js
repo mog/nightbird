@@ -48,6 +48,7 @@ Nightbird.MasterNode.prototype.openWindow = function(){
 
 	it.window.document.body.style.padding = 0;
 	it.window.document.body.style.margin = 0;
+	it.window.document.body.style.cursor = "none";
 	it.window.document.body.style.overflow = 'hidden';
 
 	it.window.document.body.appendChild( it.canvas );
