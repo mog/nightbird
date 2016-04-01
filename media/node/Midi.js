@@ -10,6 +10,7 @@ Node = function( _nightbird ){
     it.value = 0;
     it.meedee = new Meedee();
     it.deviceID;
+    it.MAX_MIDI_VALUE = 127;
     
     var outputValue = new Nightbird.Connector( it, true, 'number' );
     outputValue.setName( 'value' );
@@ -59,10 +60,10 @@ Node.prototype.operateDown = function( _x, _y ){
             it.meedee.offAll(it.deviceID);
 
             it.deviceID = event.data[1];
-            it.value = value;
+            it.value = value / it.MAX_MIDI_VALUE;
 
             it.meedee.on(it.deviceID, function(value){
-                it.value = value;
+                it.value = value / it.MAX_MIDI_VALUE;
             });
 
             it.meedee.offAll('any');
