@@ -7,7 +7,7 @@ Node = function( _nightbird ){
 	it.width = 160;
 	it.height = 30;
 
-	it.color = '1,1,1';
+	it.color = '0,0,0';
 
 	var outputValue = new Nightbird.Connector( it, true, 'color' );
 	outputValue.setName( 'color' );
@@ -16,7 +16,6 @@ Node = function( _nightbird ){
 	};
 	it.outputs.push( outputValue );
 	it.move();
-
 };
 
 Node.prototype = Object.create( Nightbird.Node.prototype );
