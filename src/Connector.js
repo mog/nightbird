@@ -67,6 +67,7 @@ Nightbird.Connector.prototype.draw = function(){
 		case 'canvas' : col = '#06f'; break;
 		case 'number' : col = '#f06'; break;
 		case 'string' : col = '#fa0'; break;
+		case 'color'  : col = '#a0f'; break;
 	}
 	if( 0 < it.nightbird.grabLinks.length ){
 		if( it.nightbird.grabLinks[0].type == it.type && ( it.nightbird.grabLinks[0].grabEnd ^ it.isOutput ) ){

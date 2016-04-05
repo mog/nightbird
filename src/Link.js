@@ -46,7 +46,10 @@ Nightbird.Link.prototype.remove = function(){
 		it.end.onTransfer( 0 );
 	}else if( it.type == 'string' ){
 		it.end.onTransfer( '' );
+	}else if( it.type == 'color' ){
+		it.end.onTransfer( '' );
 	}
+
 	if( it.start ){
 		it.start.removeLink( it );
 	}
@@ -89,6 +92,7 @@ Nightbird.Link.prototype.draw = function(){
 		case 'canvas' : col = '#06f'; break;
 		case 'number' : col = '#f06'; break;
 		case 'string' : col = '#fa0'; break;
+		case 'color'  : col = '#a0f'; break;
 	}
 	if( it.grabStart || it.grabEnd ){
 		col = col.replace( 'f', '8' );

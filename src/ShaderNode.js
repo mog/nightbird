@@ -155,6 +155,21 @@ Nightbird.ShaderNode.prototype.loadGlsl = function( _ab ){
 			}
 		}
 
+		for( var i=0; i<4; i++ ){
+			var re = new RegExp( "uniform vec3 param"+i );
+			if( re.test( code ) ){
+				var inputParam = new Nightbird.Connector( it, false, 'color' );
+				inputParam.setName( 'param'+i );
+				(function( _i ){
+					inputParam.onTransfer = function( _data ){
+						it.setParam( _i, _data );
+					};
+				}( i ));
+				it.inputs.push( inputParam );
+				it.availParam[i] = true;
+			}
+		}
+
 	}
 
 	it.move();
@@ -257,6 +272,9 @@ Nightbird.ShaderNode.prototype.draw = function(){
 		for( var i=0; i<4; i++ ){
 			if( typeof it.params[i] === 'number' ){
 				gl.uniform1f( gl.getUniformLocation( it.program, 'param'+i ), it.params[i] );
+			} else if(typeof it.params[i] === 'object' ){
+				//color node
+				gl.uniform3fv( gl.getUniformLocation( it.program, 'param'+i ), it.params[i] );
 			}
 		}
 
