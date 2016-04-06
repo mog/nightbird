@@ -347,11 +347,22 @@ Nightbird.prototype.mouseup1 = function( _e ){
 			){
 				it.targets.push( node );
 			}
-
 		}
 
-	}
+		window.onkeyup = function(e){
 
+			//remove selected nodes through pressing delete
+			if(e.keyCode == 46){
+				it.targets.map(
+					function(e){
+						e.remove()
+					}
+				);
+
+				it.targets = [];
+			}
+		}
+	}
 };
 
 Nightbird.prototype.mouseup3 = function( _e ){
@@ -450,7 +461,7 @@ Nightbird.prototype.mouseup3 = function( _e ){
 						it.contextMenus.push( contextMenu );
 					}
 					return;
-				}else{
+				} else {
 					var multipleContextMenus = [];
 
 					multipleContextMenus.push( function(){
