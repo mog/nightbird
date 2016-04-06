@@ -355,7 +355,7 @@ Nightbird.prototype.mouseup1 = function( _e ){
 			if(e.keyCode == 46){
 				it.targets.map(
 					function(e){
-						e.remove()
+						e.remove();
 					}
 				);
 
