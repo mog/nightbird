@@ -272,7 +272,7 @@ Nightbird.ShaderNode.prototype.draw = function(){
 		for( var i=0; i<4; i++ ){
 			if( typeof it.params[i] === 'number' ){
 				gl.uniform1f( gl.getUniformLocation( it.program, 'param'+i ), it.params[i] );
-			} else if(typeof it.params[i] === 'object' ){
+			} else if(Array.isArray(it.params[i]) ){
 				//color node
 				gl.uniform3fv( gl.getUniformLocation( it.program, 'param'+i ), it.params[i] );
 			}
