@@ -1,5 +1,5 @@
-Nightbird.vert = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
-Nightbird.frag = '#ifdef GL_ES\nprecision mediump float;\n#endif\nuniform float time;uniform vec2 resolution;uniform sampler2D texture0;void main(){gl_FragColor=texture2D(texture0, vec2( gl_FragCoord.x/resolution.x, 1.-gl_FragCoord.y/resolution.y ) );}';
+Nightbird.vert = '#version 300 es\nin vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+Nightbird.frag = '#version 300 es\n\n#ifdef GL_ES\nprecision mediump float;\n#endif\nout vec4 color;\nuniform float time;uniform vec2 resolution;uniform sampler2D texture0;void main(){color=texture(texture0, vec2( gl_FragCoord.x/resolution.x, 1.-gl_FragCoord.y/resolution.y ) );}';
 
 Nightbird.ShaderNode = function( _nightbird, _ab ){
 
@@ -13,7 +13,7 @@ Nightbird.ShaderNode = function( _nightbird, _ab ){
 	it.canvas.width = it.nightbird.width;
 	it.canvas.height = it.nightbird.height;
 
-	it.gl = it.canvas.getContext( 'webgl' );
+	it.gl = it.canvas.getContext( 'webgl2' );
 	var gl = it.gl;
 
 	it.setProgram( Nightbird.frag );
@@ -72,6 +72,7 @@ Nightbird.ShaderNode.prototype.setProgram = function( _frag, _name ){
 	gl.compileShader( v );
 	if( !gl.getShaderParameter( v, gl.COMPILE_STATUS ) ){
 		it.error = gl.getShaderInfoLog( v );
+		console.log(it.error);
 		return;
 	}
 
@@ -80,6 +81,7 @@ Nightbird.ShaderNode.prototype.setProgram = function( _frag, _name ){
 	gl.compileShader( f );
 	if( !gl.getShaderParameter( f, gl.COMPILE_STATUS ) ){
 		it.error = gl.getShaderInfoLog( f );
+		console.log(it.error);
 		return;
 	}
 
@@ -91,6 +93,7 @@ Nightbird.ShaderNode.prototype.setProgram = function( _frag, _name ){
 		it.program = p;
 	}else{
 		it.error = gl.getProgramInfoLog( p );
+		console.log(it.error);
 	}
 
 };

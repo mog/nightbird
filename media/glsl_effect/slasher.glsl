@@ -1,7 +1,9 @@
+#version 300 es
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform vec2 resolution;
 uniform float time;
 uniform sampler2D texture0;
@@ -26,9 +28,9 @@ void main()
 {
 	float s = 32.;
 	vec3 col;
-	vec3 tex = texture2D( texture0, vec2( c.x/r.x, 1.-c.y/r.y ) ).xyz;
+	vec3 tex = texture( texture0, vec2( c.x/r.x, 1.-c.y/r.y ) ).xyz;
 	float g = ( tex.x+tex.y+tex.z )/3.;
 	float phase = clamp( ( param0*1.2-.1 )*s-mod( c.x-c.y, s ), 0., 1. );
 	col = ( 1.-g )*hue( param1 )*phase + tex*( 1.-phase );
-	gl_FragColor = vec4( col, 1. );
+	color = vec4( col, 1. );
 }

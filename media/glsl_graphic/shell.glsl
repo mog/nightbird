@@ -1,3 +1,4 @@
+#version 300 es
 // FMS_Cat - Shell
 // GLSL Graphics for Tokyo Demo Fest 2015
 // 2015/02/22
@@ -12,6 +13,7 @@
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform float time;
 uniform vec2 resolution;
 
@@ -311,5 +313,5 @@ void main()
 
   col=cl(cl(col+sin(p.y*500.+t*10.)*.003)*5.*exp(-length(p)*2.))-exp(-t*.8)-exp(-(tMax-t));
 
-  gl_FragColor=vec4(col,1.);
+  color=vec4(col,1.);
 }

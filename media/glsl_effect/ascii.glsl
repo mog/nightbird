@@ -1,9 +1,11 @@
+#version 300 es
 // referenced the method of bitmap of iq : https://www.shadertoy.com/view/4dfXWj
 
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform float time;
 uniform vec2 resolution;
 uniform sampler2D texture0;
@@ -24,7 +26,7 @@ void main()
 {
     vec2 uv = vec2(floor(gl_FragCoord.x/8./zoom)*8.*zoom,floor(gl_FragCoord.y/12./zoom)*12.*zoom)/r;
     ivec2 pos = ivec2(mod(gl_FragCoord.x/zoom,8.),mod(gl_FragCoord.y/zoom,12.));
-    vec4 tex = texture2D(texture0,vec2(uv.x,1.-uv.y));
+    vec4 tex = texture(texture0,vec2(uv.x,1.-uv.y));
     float cha = 0.;
 
     {
@@ -152,5 +154,5 @@ void main()
 	}
 
     vec3 col = vec3(1.);
-    gl_FragColor = vec4(cha*col,1.);
+    color = vec4(cha*col,1.);
 }

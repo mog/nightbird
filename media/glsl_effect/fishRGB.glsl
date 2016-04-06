@@ -1,7 +1,9 @@
+#version 300 es
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform vec2 resolution;
 uniform sampler2D texture0;
 uniform float param0;
@@ -19,7 +21,7 @@ vec3 barrel( float _amp, vec2 _uv )
 	float amp = min( _amp*3., PI*corn );
 	float zoom = corn/(tan(corn*amp)+corn);
 	vec2 p = clamp( (uv+normalize(uv-.5)*tan(length(uv-.5)*amp))*zoom + .5*(1.-zoom), 0., 1. );
-	return texture2D( texture0, vec2( p.x, 1.-p.y ) ).xyz;
+	return texture( texture0, vec2( p.x, 1.-p.y ) ).xyz;
 }
 
 void main()
@@ -36,5 +38,5 @@ void main()
 	col.z += barrel( amp*1.06, uv ).z*.4;
 	col.z += barrel( amp*1.065, uv ).z*.4;
 	col.z += barrel( amp*1.07, uv ).z*.4;
-	gl_FragColor = vec4( col, 1. );
+	color = vec4( col, 1. );
 }

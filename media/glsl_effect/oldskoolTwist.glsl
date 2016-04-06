@@ -1,7 +1,9 @@
+#version 300 es
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform float time;
 uniform vec2 resolution;
 uniform sampler2D texture0;
@@ -24,8 +26,8 @@ void main()
   float v3 = sin( th+PI/4. )*.5;
 
   vec4 col = v.xxxx;
-  if( v1 < uvn.x && uvn.x < v2 ){ col.xyz = texture2D( texture0, vec2( .25+.5*(uvn.x-v1)/(v2-v1), 1.-uv.y ) ).xyz; col.w = 1.; }
-  if( v2 < uvn.x && uvn.x < v3 ){ col.xyz = texture2D( texture0, vec2( .25+.5*(uvn.x-v2)/(v3-v2), 1.-uv.y ) ).xyz; col.w = 1.; }
+  if( v1 < uvn.x && uvn.x < v2 ){ col.xyz = texture( texture0, vec2( .25+.5*(uvn.x-v1)/(v2-v1), 1.-uv.y ) ).xyz; col.w = 1.; }
+  if( v2 < uvn.x && uvn.x < v3 ){ col.xyz = texture( texture0, vec2( .25+.5*(uvn.x-v2)/(v3-v2), 1.-uv.y ) ).xyz; col.w = 1.; }
 
-  gl_FragColor = col;
+  color = col;
 }
