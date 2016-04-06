@@ -1,7 +1,9 @@
+#version 300 es
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform vec2 resolution;
 uniform sampler2D texture0;
 uniform float param0;
@@ -23,5 +25,5 @@ void main()
 	dist = mod( dist, rmin );
 	if( rmin/2. < dist ){ dist = rmin - dist; }
 
-	gl_FragColor = texture2D( texture0, vec2( r.x/2.+cos(angle)*dist, r.y/2.+sin(angle)*dist )/r );
+	color = texture( texture0, vec2( r.x/2.+cos(angle)*dist, r.y/2.+sin(angle)*dist )/r );
 }

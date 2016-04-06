@@ -1,3 +1,4 @@
+#version 300 es
 // FMS_Cat - This Is My Own Sushi !!
 // GLSL Graphics for Tokyo Demo Fest 2015
 // 2015/02/22
@@ -9,6 +10,7 @@
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform float time;
 uniform vec2 resolution;
 
@@ -255,5 +257,5 @@ vec3 getNormal(vec3 p,float d)
 
     col-=length(p)*.2*v.yyy;
 
-    gl_FragColor=vec4(col,1.);
+    color=vec4(col,1.);
   }

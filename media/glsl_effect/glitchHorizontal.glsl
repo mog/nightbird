@@ -1,7 +1,9 @@
+#version 300 es
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform vec2 resolution;
 uniform float time;
 uniform sampler2D texture0;
@@ -28,9 +30,9 @@ void main()
 		fract( uv.x+( .4*sin( mo*182.43+floor(t*3.)/3.*.1+.8 ) )*amp )
 	);
 	vec3 col = vec3(
-		texture2D( texture0, vec2( p.x, 1.-uv.y ) ).x,
-		texture2D( texture0, vec2( p.y, 1.-uv.y ) ).y,
-		texture2D( texture0, vec2( p.z, 1.-uv.y ) ).z
+		texture( texture0, vec2( p.x, 1.-uv.y ) ).x,
+		texture( texture0, vec2( p.y, 1.-uv.y ) ).y,
+		texture( texture0, vec2( p.z, 1.-uv.y ) ).z
 	);
-	gl_FragColor = vec4( col, 1. );
+	color = vec4( col, 1. );
 }

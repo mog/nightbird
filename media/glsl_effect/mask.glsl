@@ -1,7 +1,9 @@
+#version 300 es
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform float time;
 uniform vec2 resolution;
 
@@ -20,8 +22,8 @@ void main()
 {
   vec2 uv = c/r;
 
-    vec4 t0 = texture2D( texture0, vec2( uv.x, 1.-uv.y ) );
-    vec4 t1 = texture2D( texture1, vec2( uv.x, 1.-uv.y ) );
+    vec4 t0 = texture( texture0, vec2( uv.x, 1.-uv.y ) );
+    vec4 t1 = texture( texture1, vec2( uv.x, 1.-uv.y ) );
 
     vec3 col = param0;//vec4(0.0, 0.0, 0.0, 0.0);
     float delta = param1;//.4;
@@ -30,8 +32,8 @@ void main()
         ((t0.y >= col.y - delta) && (t0.y <= col.y + delta)) &&
         ((t0.z >= col.z - delta) && (t0.z <= col.z + delta))){
 
-        gl_FragColor = t1;
+        color = t1;
     } else {
-        gl_FragColor = t0;
+        color = t0;
     }
 }

@@ -1,7 +1,9 @@
+#version 300 es
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform float time;
 uniform vec2 resolution;
 uniform float param0;
@@ -20,12 +22,12 @@ void main()
 
   if( p < 1. )
   {
-    col = texture2D( texture0, vec2( uv.x, 1.-uv.y ) );
+    col = texture( texture0, vec2( uv.x, 1.-uv.y ) );
   }
   else
   {
-    col = texture2D( texture1, vec2( uv.x, 1.-uv.y ) );
+    col = texture( texture1, vec2( uv.x, 1.-uv.y ) );
   }
 
-  gl_FragColor = col;
+  color = col;
 }

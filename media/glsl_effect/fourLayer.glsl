@@ -1,7 +1,9 @@
+#version 300 es
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform float time;
 uniform vec2 resolution;
 uniform sampler2D texture0;
@@ -23,10 +25,10 @@ void main()
   vec2 p = vec2( uv.x, 1.-uv.y );
   vec3 col = vec3( 0. );
 
-  col = texture2D( texture3, p ).xyz;
-  col = blend( col, texture2D( texture2, p ) );
-  col = blend( col, texture2D( texture1, p ) );
-  col = blend( col, texture2D( texture0, p ) );
+  col = texture( texture3, p ).xyz;
+  col = blend( col, texture( texture2, p ) );
+  col = blend( col, texture( texture1, p ) );
+  col = blend( col, texture( texture0, p ) );
 
-  gl_FragColor = vec4( col, 1. );
+  color = vec4( col, 1. );
 }

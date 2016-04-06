@@ -1,7 +1,9 @@
+#version 300 es
 #ifdef GL_ES
 precision mediump float;
 #endif
 
+out vec4 color;
 uniform float time;
 uniform vec2 resolution;
 
@@ -26,5 +28,5 @@ void main()
 
   float mm = exp(-m*3.)*.6+5.;
 	vec3 col = vec3( sin(mm*6.+t)*.4, sin(mm*6.+1.), sin(mm*6.+t*.73)*.5 )*.5+.5;
-  gl_FragColor = vec4( col-length(guv*.5), 1. );
+  color = vec4( col-length(guv*.5), 1. );
 }
