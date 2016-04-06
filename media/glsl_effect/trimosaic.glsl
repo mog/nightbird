@@ -16,11 +16,6 @@ void comp( vec2 v2, inout vec2 v3, vec2 i )
 	if( length( v2-i ) < length( v2-v3 ) ){ v3 = i; }
 }
 
-float round( float _i )
-{
-	return floor( _i+.5 );
-}
-
 void main()
 {
 	float wid = max( r.x/pow( 2., ( 11.-param0*10. ) ), 1. );
