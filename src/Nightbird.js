@@ -38,7 +38,12 @@ var Nightbird = function( _w, _h ){
 
 	it.master = new Nightbird.MasterNode( it );
 	it.nodes.push( it.master );
-	it.master.move( 256, 256 );
+
+	var wW = window.innerWidth;
+	var wH = window.innerHeight;
+	var wPadding = 50;
+	//center master vertically, keep it on the right
+	it.master.move( Math.min(wW, Math.max(0, (wW - 256) + wPadding)), Math.max(0, Math.min((wH - 100) / 2, wH)) );
 	it.master.openWindow();
 
 	document.body.appendChild( it.modular );
