@@ -693,8 +693,8 @@ Nightbird.prototype.loadFiles = function( _files ){
 
 				if( ext == 'glsl' ){
 					node = new Nightbird.ShaderNode( it, ab );
-				}else if( ext == 'jpg' || ext == 'jpeg' || ext == 'png' ){
-					node = new Nightbird.ImageNode( it, ab );
+				}else if( ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'svg' ){
+					node = new Nightbird.ImageNode( it, ab, ext );
 				}else if( ext == 'mp4' || ext == 'webm' ){
 					node = new Nightbird.VideoNode( it, ab );
 				}else if( ext == 'gif' ){

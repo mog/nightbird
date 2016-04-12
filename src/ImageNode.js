@@ -1,4 +1,4 @@
-Nightbird.ImageNode = function( _nightbird, _ab ){
+Nightbird.ImageNode = function( _nightbird, _ab, ext ){
 
 	var it = this;
 
@@ -34,8 +34,11 @@ Nightbird.ImageNode.prototype.loadImage = function( _ab ){
 	var it = this;
 
 	var image = new Blob( [ _ab ] );
-	it.image.src = window.URL.createObjectURL( image );
 
+    if( it.fileExtension == "svg")
+        image = new Blob( [ _ab ], {type:"image/svg+xml"} );
+
+	it.image.src = window.URL.createObjectURL( image );
 };
 
 Nightbird.ImageNode.prototype.remove = function(){
