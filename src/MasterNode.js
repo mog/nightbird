@@ -51,7 +51,7 @@ Nightbird.MasterNode.prototype.openWindow = function(){
 	it.canvas = document.createElement( 'canvas' );
 	it.context = it.canvas.getContext( '2d' );
 
-	it.window = window.open( 'about:blank', 'master_'+Date.now(), 'width='+it.nightbird.width+',height='+it.nightbird.height+',menubar=no' );
+	it.window = window.open( 'about:blank', 'master', 'width='+it.nightbird.width+',height='+it.nightbird.height+',menubar=no' );
 
 	it.window.document.body.style.padding = 0;
 	it.window.document.body.style.margin = 0;
