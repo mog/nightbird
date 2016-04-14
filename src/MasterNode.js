@@ -44,7 +44,14 @@ Nightbird.MasterNode.prototype.openWindow = function(){
 
 	var it = this;
 
-	it.window = window.open( 'about:blank', 'master', 'width='+it.nightbird.width+',height='+it.nightbird.height+',menubar=no' );
+	if(!!it.window)
+		it.window.close();
+		
+	//when window is closed these two get lost, so recreate them every time a window is opened
+	it.canvas = document.createElement( 'canvas' );
+	it.context = it.canvas.getContext( '2d' );
+
+	it.window = window.open( 'about:blank', 'master_'+Date.now(), 'width='+it.nightbird.width+',height='+it.nightbird.height+',menubar=no' );
 
 	it.window.document.body.style.padding = 0;
 	it.window.document.body.style.margin = 0;
@@ -56,7 +63,10 @@ Nightbird.MasterNode.prototype.openWindow = function(){
 		it.canvas.style.width = it.window.innerWidth;
 		it.canvas.style.height = it.window.innerHeight;
 	};
-
+	
+	window.onbeforeunload = function(){
+		it.window.close();
+	};
 };
 
 Nightbird.MasterNode.prototype.remove = function(){
