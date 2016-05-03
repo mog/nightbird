@@ -100,6 +100,7 @@ Node.prototype.save = function( _hashed ){
 
     var obj = Nightbird.Node.prototype.save.call( it, _hashed );
     obj.value = it.value;
+    obj.deviceID = it.deviceID;
     return obj;
 
 };
