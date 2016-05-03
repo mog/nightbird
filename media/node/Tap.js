@@ -29,6 +29,12 @@ Node = function( _nightbird ){
 		return Number( it.beat );
 	};
 	it.outputs.push( outputBeat );
+	var outputBeatSmall = new Nightbird.Connector( it, true, 'number' );
+	outputBeatSmall.setName( 'beat%1' );
+	outputBeatSmall.onTransfer = function(){
+		return Number( it.beat % 1);
+	};
+	it.outputs.push( outputBeatSmall );
 	it.move();
 
 	it.contextMenus.unshift( function(){
