@@ -49,6 +49,8 @@ Nightbird.MasterNode.prototype.openWindow = function(){
 		
 	//when window is closed these two get lost, so recreate them every time a window is opened
 	it.canvas = document.createElement( 'canvas' );
+	it.canvas.width = it.nightbird.width;
+	it.canvas.height = it.nightbird.height;
 	it.context = it.canvas.getContext( '2d' );
 
 	it.window = window.open( 'about:blank', 'master', 'width='+it.nightbird.width+',height='+it.nightbird.height+',menubar=no' );
